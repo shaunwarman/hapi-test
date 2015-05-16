@@ -1,21 +1,42 @@
 var Hapi = require('hapi');
-var config = require('./config.json');
+var Good = require('good');
 
-// Create a server with a host and port
 var server = new Hapi.Server();
-server.connection({ 
-    host: 'localhost', 
-    port: 8000 
-});
+server.connection({ port: 3000 });
 
-// Add the route
 server.route({
     method: 'GET',
-    path: config.baseUrl, 
+    path: '/',
     handler: function (request, reply) {
-       reply('Hello world');
+        reply('Hello, world!');
     }
 });
 
-// Start the server
-server.start();
+server.route({
+    method: 'GET',
+    path: '/{name}',
+    handler: function (request, reply) {
+        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+    }
+});
+
+server.register({
+    register: Good,
+    options: {
+        reporters: [{
+            reporter: require('good-console'),
+            events: {
+                response: '*',
+                log: '*'
+            }
+        }]
+    }
+}, function (err) {
+    if (err) {
+        throw err; // something bad happened loading the plugin
+    }
+
+    server.start(function () {
+        server.log('info', 'Server running at: ' + server.info.uri);
+    });
+});

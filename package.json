@@ -1,0 +1,24 @@
+{
+  "name": "hapi-test",
+  "version": "0.0.0",
+  "description": "Simple hapi test app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaunwarman/hapi-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaunwarman/hapi-test/issues"
+  },
+  "homepage": "https://github.com/shaunwarman/hapi-test",
+  "dependencies": {
+    "hapi": "^8.4.0",
+    "good": "^6.1.2",
+    "good-console": "^5.0.0"
+  }
+}

@@ -4,6 +4,13 @@ var Good = require('good');
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
 
+server.views({
+    engines: {
+        html: require('handlebars')
+    },
+    path: Path.join(__dirname, 'templates')
+});
+
 server.route({
     method: 'GET',
     path: '/',

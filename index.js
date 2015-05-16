@@ -1,4 +1,5 @@
 var Hapi = require('hapi');
+var config = require('./config.json');
 
 // Create a server with a host and port
 var server = new Hapi.Server();
@@ -10,9 +11,9 @@ server.connection({
 // Add the route
 server.route({
     method: 'GET',
-    path:'/hello', 
+    path: config.baseUrl, 
     handler: function (request, reply) {
-       reply('hello world');
+       reply('Hello world');
     }
 });
 
